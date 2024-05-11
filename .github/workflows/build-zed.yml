@@ -20,6 +20,9 @@ jobs:
 
     - name: Add WASM target
       run: rustup target add wasm32-wasi
+      
+    - name: Add add x86_64-pc-windows-gnu taget
+      run: rustup target add x86_64-pc-windows-gnu
 
     - name: Install C++ build tools
       uses: ilammy/msvc-dev-cmd@v1
