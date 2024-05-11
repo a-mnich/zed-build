@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -21,8 +21,8 @@ jobs:
     - name: Add WASM target
       run: rustup target add wasm32-wasi
       
-    - name: Add add x86_64-pc-windows-msvc taget
-      run: rustup target add x86_64-pc-windows-msvc
+#    - name: Add add x86_64-pc-windows-msvc taget
+#      run: rustup target add x86_64-pc-windows-msvc
 
     - name: Install C++ build tools
       uses: ilammy/msvc-dev-cmd@v1
@@ -30,7 +30,8 @@ jobs:
         arch: x64
 
     - name: Run cargo
-      run: cargo run --release --target x86_64-pc-windows-msvc
+#      run: cargo run --release --target x86_64-pc-windows-msvc
+      run: cargo run --release
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v2
