@@ -1,0 +1,36 @@
+name: Build Zed
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        repository: zed-industries/zed
+
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+
+    - name: Add WASM target
+      run: rustup target add wasm32-wasi
+
+    - name: Install C++ build tools
+      uses: ilammy/msvc-dev-cmd@v1
+      with:
+        arch: x64
+
+    - name: Run cargo
+      run: cargo run --release --target x86_64-pc-windows-gnu
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-artifact
+        path: path/to/your/artifact
