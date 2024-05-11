@@ -32,7 +32,7 @@ jobs:
 
     - name: Set matrix for build
       id: set-matrix
-      run: echo "::set-output name=matrix::${{ toJSON(steps.get-releases.outputs.result) }}"
+      run: echo "matrix=${{ toJSON(steps.get-releases.outputs.result) }}"  >> $GITHUB_OUTPUT
 
   build:
     runs-on: windows-latest
