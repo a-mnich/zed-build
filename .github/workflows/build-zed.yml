@@ -36,5 +36,5 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v2
       with:
-        name: my-artifact
-        path: path/to/your/artifact
+        name: target
+        path: target
