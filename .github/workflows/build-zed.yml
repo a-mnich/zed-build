@@ -2,6 +2,13 @@ name: Build Zed
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *"
+
+permissions: 
+  contents: write
+  id-token: write
+  attestations: write
 
 jobs:
   build:
@@ -29,8 +36,43 @@ jobs:
     - name: Run cargo
       run: cargo build --release
 
+    - name: Attest build provenance
+      uses: actions/attest-build-provenance@v1
+      with:
+        subject-path: 'target\release\Zed.exe'
+
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
       with:
         name: zed
         path: target\release\Zed.exe
+
+    - name: Set date
+      id: set-date
+      shell: pwsh
+      run: |
+        $CURRENT_DATE = Get-Date -UFormat "%Y.%m.%d"
+        echo "CURRENT_DATE=$CURRENT_DATE" >> $env:GITHUB_ENV
+        echo "CURRENT_DATE=$CURRENT_DATE" >> $env:GITHUB_OUTPUT
+        
+    - name: Update Nightly Current
+      uses: softprops/action-gh-release@v2
+      if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/auto-release')
+      with:
+        name: Nightly - Current
+        body: This release always contains the newest nightly artifacts.
+        tag_name: nightly
+        prerelease: true
+        files: |
+          target/release/Zed.exe
+
+    - name: Release Nightly
+      uses: softprops/action-gh-release@v2
+      if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/auto-release')
+      with:
+        name: Nightly ${{ steps.set-date.outputs.CURRENT_DATE }}
+        body: Automated nightly release of Zed
+        tag_name: "nightly-${{ steps.set-date.outputs.CURRENT_DATE }}"
+        prerelease: true
+        files: |
+          target/release/Zed.exe
