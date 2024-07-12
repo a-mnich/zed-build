@@ -39,18 +39,9 @@ jobs:
         path: target\release\Zed.exe
 
     - name: Set date
-      run: echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-
-    - name: Release Nightly
-      uses: softprops/action-gh-release@v2
-      if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/auto-release')
-      with:
-        name: Nightly ${{ env.CURRENT_DATE }}
-        body: Automated nightly release of Zed
-        tag_name: nightly-${{ env.CURRENT_DATE }}
-        prerelease: true
-        files: |
-          target\release\Zed.exe
+      run: |
+        echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        echo "${{ env.CURRENT_DATE }}"
 
     - name: Update Nightly Current
       uses: softprops/action-gh-release@v2
@@ -61,4 +52,15 @@ jobs:
         tag_name: nightly-current
         prerelease: true
         files: |
-          target\release\Zed.exe
+          target/release/Zed.exe
+
+    - name: Release Nightly
+      uses: softprops/action-gh-release@v2
+      if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/auto-release')
+      with:
+        name: Nightly ${{ env.CURRENT_DATE }}
+        body: Automated nightly release of Zed
+        tag_name: "nightly-${{ env.CURRENT_DATE }}"
+        prerelease: true
+        files: |
+          target/release/Zed.exe
