@@ -2,6 +2,8 @@ name: Build Zed
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *"
 
 permissions: 
   contents: write
@@ -59,7 +61,7 @@ jobs:
       with:
         name: Nightly - Current
         body: This release always contains the newest nightly artifacts.
-        tag_name: nightly-current
+        tag_name: nightly
         prerelease: true
         files: |
           target/release/Zed.exe
