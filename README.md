@@ -3,7 +3,11 @@
 This repository is used to compile nightly releases of [Zed](https://github.com/zed-industries/zed).  
 A new pre-release is automatically created every day, and the release tagged "nightly" is updated with the latest artifacts.
 
-To use the latest nightly release of Zed, navigate to the [Releases](https://github.com/IhrRepository/zed-build//releases/tag/nightly) section of this repository.
+To use the latest nightly release of Zed, navigate to the [Latest Nightly Release](https://github.com/IhrRepository/zed-build/releases/tag/nightly) section of this repository.
+
+<p align="left"><b><a href="https://github.com/a-mnich/zed-build/releases/download/nightly/Zed.exe">Click here to directly download Latest Nightly Build</a></b></p>
+
+Daily releases can be found in the [Releases Section](https://github.com/IhrRepository/zed-build/releases)
 
 
 > [!CAUTION]
