@@ -43,7 +43,7 @@ jobs:
 
     - name: Release Nightly
       uses: softprops/action-gh-release@v2
-      if: startsWith(github.ref, 'refs/heads/main')
+      if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/auto-release')
       with:
         name: Nightly ${{ env.CURRENT_DATE }}
         body: Automated nightly release of Zed
@@ -54,7 +54,7 @@ jobs:
 
     - name: Update Nightly Current
       uses: softprops/action-gh-release@v2
-      if: startsWith(github.ref, 'refs/heads/main')
+      if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/auto-release')
       with:
         name: Nightly - Current
         body: This release always contains the newest nightly artifacts.
