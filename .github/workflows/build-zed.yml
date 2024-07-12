@@ -5,6 +5,8 @@ on:
 
 permissions: 
   contents: write
+  id-token: write
+  attestations: write
 
 jobs:
   build:
@@ -32,6 +34,11 @@ jobs:
     - name: Run cargo
       run: cargo build --release
 
+    - name: Attest build provenance
+      uses: actions/attest-build-provenance@v1
+      with:
+        subject-path: 'target\release\Zed.exe'
+
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
       with:
@@ -43,6 +50,7 @@ jobs:
       run: |
         echo "CURRENT_DATE=$(date -u +'%Y.%m.%d')" >> $GITHUB_ENV
         echo "CURRENT_DATE=$CURRENT_DATE" >> $GITHUB_OUTPUT
+        
     - name: Update Nightly Current
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/auto-release')
