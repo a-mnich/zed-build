@@ -47,9 +47,11 @@ jobs:
 
     - name: Set date
       id: set-date
+      shell: pwsh
       run: |
-        echo "CURRENT_DATE=$(date -u +'%Y.%m.%d')" >> $GITHUB_ENV
-        echo "CURRENT_DATE=$CURRENT_DATE" >> $GITHUB_OUTPUT
+        $CURRENT_DATE = Get-Date -UFormat "%Y.%m.%d"
+        echo "CURRENT_DATE=$CURRENT_DATE" >> $env:GITHUB_ENV
+        echo "CURRENT_DATE=$CURRENT_DATE" >> $env:GITHUB_OUTPUT
         
     - name: Update Nightly Current
       uses: softprops/action-gh-release@v2
