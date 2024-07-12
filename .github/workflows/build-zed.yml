@@ -3,6 +3,9 @@ name: Build Zed
 on:
   workflow_dispatch:
 
+permissions: 
+  contents: write
+
 jobs:
   build:
     runs-on: windows-latest
@@ -40,7 +43,7 @@ jobs:
 
     - name: Release Nightly
       uses: softprops/action-gh-release@v2
-      #if startsWith(github.ref, 'refs/heads/main')
+      if: startsWith(github.ref, 'refs/heads/main')
       with:
         name: Nightly ${{ env.CURRENT_DATE }}
         body: Automated nightly release of Zed
@@ -48,10 +51,10 @@ jobs:
         prerelease: true
         files: |
           target\release\Zed.exe
-          
-    - name: Release Nightly
+
+    - name: Update Nightly Current
       uses: softprops/action-gh-release@v2
-      #if startsWith(github.ref, 'refs/heads/main')
+      if: startsWith(github.ref, 'refs/heads/main')
       with:
         name: Nightly - Current
         body: This release always contains the newest nightly artifacts.
