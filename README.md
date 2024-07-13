@@ -5,8 +5,8 @@ A new pre-release is automatically created every day, and the release tagged "ni
 
 <p align="left"><b><a href="https://github.com/a-mnich/zed-build/releases/download/nightly/Zed.exe">Click here to directly download Latest Nightly Build</a></b></p>
 
-The artifacts of the [Nightly Release](https://github.com/IhrRepository/zed-build/releases/tag/nightly) are updated daily.
-Older daily releases can be found in the [Releases Section](https://github.com/IhrRepository/zed-build/releases)
+The artifacts of the [Nightly Release](https://github.com/a-mnich/zed-build/releases/tag/nightly) are updated daily.
+Older daily releases can be found in the [Releases Section](https://github.com/a-mnich/zed-build/releases)
 
 
 > [!CAUTION]
