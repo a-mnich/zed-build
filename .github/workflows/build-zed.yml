@@ -19,6 +19,9 @@ jobs:
       with:
         repository: zed-industries/zed
 
+    - name: Set git config for long paths
+      run: git config --system core.longpaths true
+      
     - name: Install Rust
       uses: dtolnay/rust-toolchain@stable
 
