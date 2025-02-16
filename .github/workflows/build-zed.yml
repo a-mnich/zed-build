@@ -36,6 +36,12 @@ jobs:
     - name: Rust Cache
       uses: Swatinem/rust-cache@v2
 
+    - name: Apply patches
+      run: |
+        # https://github.com/zed-industries/zed/discussions/24816#discussioncomment-12210316
+        curl -o fix-linking.patch https://github.com/zed-industries/zed/commit/586ef47ec98c92c3330411a5b184215026379e92.patch 
+        git apply fix-linking.patch
+
     - name: Run cargo
       run: cargo build --release
 
