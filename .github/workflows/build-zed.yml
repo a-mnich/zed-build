@@ -24,9 +24,9 @@ jobs:
       
     - name: Install Rust
       uses: dtolnay/rust-toolchain@stable
-
-    - name: Add WASM target
-      run: rustup target add wasm32-wasi
+      with:
+        toolchain: stable
+        target: wasm32-wasip1
 
     - name: Install C++ build tools
       uses: ilammy/msvc-dev-cmd@v1
