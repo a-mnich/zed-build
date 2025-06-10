@@ -65,7 +65,7 @@ jobs:
         echo "CURRENT_DATE=$CURRENT_DATE" >> $env:GITHUB_OUTPUT
         
     - name: Update Nightly Current
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v2.2.2
       if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/auto-release')
       with:
         name: Nightly - Current
