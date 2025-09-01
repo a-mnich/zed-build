@@ -46,7 +46,7 @@ jobs:
       run: cargo build --release
 
     - name: Attest build provenance
-      uses: actions/attest-build-provenance@v2
+      uses: actions/attest-build-provenance@v3
       with:
         subject-path: 'target\release\Zed.exe'
 
