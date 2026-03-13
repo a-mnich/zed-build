@@ -1,3 +1,9 @@
+> [!WARNING]
+> This repository is archived and will no longer receive new releases.  
+> Zed now publishes official binaries for Windows.  
+> Download them from the official Zed repository: https://github.com/zed-industries/zed/releases
+
+
 # Zed Nightly Builds
 
 This repository is used to compile nightly releases of [Zed](https://github.com/zed-industries/zed).  
